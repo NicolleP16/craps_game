@@ -14,6 +14,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/*
+* Taller Craps Game
+*
+* Integrantes:
+*   - Nicolle Paz - 202419714
+*   - Juan Felipe Chapal - 202415537
+*   - Jeremy Astaiza Gutierrez - 202415667
+*
+*/
+
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
