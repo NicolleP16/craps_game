@@ -2,6 +2,7 @@ package com.example.crapsgame.controllers;
 
 import com.example.crapsgame.models.AlertBox;
 import com.example.crapsgame.models.Dice;
+import com.example.crapsgame.models.Game;
 import com.example.crapsgame.models.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,12 +23,23 @@ public class GameController {
     private Label rollScoreLabel;
 
     @FXML
+    private Label pointLabel;
+
+    @FXML
+    private Label gamesWonLabel;
+
+    @FXML
+    private Label gamesLostLabel;
+
+    @FXML
     private ImageView diceImageView1;
 
     @FXML
     private ImageView diceImageView2;
 
     private Player player;
+
+    private Game game = new Game();
 
     public void setPlayer(Player player) {
         this.player = player;
@@ -39,10 +51,26 @@ public class GameController {
 
     @FXML
     void onActionPlayButton(ActionEvent event) {
+        game.playGame();
+
+        int dice1Value= game.getDice1();
+        int dice2Value = game.getDice2();
+
         Dice dice1 = new Dice();
         Dice dice2 = new Dice();
+        dice1.setValue(dice1Value);
+        dice2.setValue(dice2Value);
 
-        int rollScore = dice1.roll() + dice2.roll();
+        int rollScore = dice1Value + dice2Value;
+
+        if (game.isPointEstablished()) {
+            pointLabel.setText(String.valueOf(game.getPoint()));
+        } else {
+            pointLabel.setText("0");
+        }
+
+        gamesWonLabel.setText(String.valueOf(game.getWinGames()));
+        gamesLostLabel.setText(String.valueOf(game.getLossGames()));
 
         this.diceImageView1.setImage(new Image(getClass().getResourceAsStream(
                 dice1.getDiceImagePath()
