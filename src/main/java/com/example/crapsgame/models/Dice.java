@@ -6,9 +6,8 @@ public class Dice {
 
     String IMAGES_PATH = "/com/example/crapsgame/imeges/dices/dice";
 
-    public int roll(){
-        this.value = (int)(Math.random()*6+1);
-        return this.value;
+    public void setValue(int value) {
+        this.value = value;
     }
 
     public String getDiceImagePath() {
